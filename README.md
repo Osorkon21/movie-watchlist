@@ -14,20 +14,7 @@
 ## Specific Goals (MVP)
 
 
-Searched 
 
-OpenWeatherMap API to get following weather data:
-  
-  city name 
-  date 
-  icon representation of weather conditions 
-  temperature
-  humidity
-  wind speed
-
-Selecting city from history will present current and future weather conditions 
-
-```
 
 
 ## Example Preview
@@ -38,9 +25,7 @@ Selecting city from history will present current and future weather conditions
 
 ## Deployment
 
-* GitHub [Pages URL](https://seanwsutter.github.io/06-serverapi-challenge-sws/)
 
-* Github [Repository](https://github.com/seanwsutter/06-serverapi-challenge-sws/)
 
 
 
