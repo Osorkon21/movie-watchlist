@@ -1,0 +1,24 @@
+/* global and misc */
+* {
+  margin: 1px;
+  padding: 1px;
+  /* box-sizing: border-box; */
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+i {
+  cursor: pointer;
+}
+
+/* h2 {
+  font-family: sans-serif;
+  font-size: 36px;
+} */
