@@ -88,3 +88,79 @@ function addMovieCard(movieData) {
       </div>
     `));
 }
+
+// LocalStorage data.
+// sample movie data
+
+var sampleMovieArray = 
+[{
+    "adult": false,
+    "backdrop_path": "/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg",
+    "genre_ids": [
+        28,
+        12,
+        14,
+        878
+    ],
+    "id": 19995,
+    "original_language": "en",
+    "original_title": "Avatar",
+    "overview": "In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization.",
+    "popularity": 113.207,
+    "poster_path": "/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
+    "release_date": "2009-12-15",
+    "title": "Avatar",
+    "video": false,
+    "vote_average": 7.574,
+    "vote_count": 29874
+},
+{
+    "adult": false,
+    "backdrop_path": "/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg",
+    "genre_ids": [
+        28,
+        12,
+        14,
+        878
+    ],
+    "id": 19995,
+    "original_language": "en",
+    "original_title": "Back To The Future",
+    "overview": "In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization.",
+    "popularity": 113.207,
+    "poster_path": "/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
+    "release_date": "2009-12-15",
+    "title": "Avatar",
+    "video": false,
+    "vote_average": 7.574,
+    "vote_count": 29874
+}
+]
+
+console.log(sampleMovieArray);
+
+// Title of movie, year, and priority. Get the watchlist object from MJ. 1. By the end of the day: HTML/CSS for the main page where we see the trending + search results. 2. Functions for getting data into and out of local storage. 
+
+// step 1: can we save this array in local storage
+// step 2: can we pull it back out and have it in its native data format 
+
+// localStorage.setItem("title", JSON.stringify(sampleMovieArray));
+
+
+function getFromLocalStorage(name){
+var array = localStorage.getItem("array");
+
+if (sampleMovieArray) {
+    array=JSON.parse(sampleMovieArray);
+}
+
+else {
+    array=[];
+}
+return array; 
+}
+
+
+function saveToLocalStorage(array){ 
+    localStorage.setItem("array", JSON.stringify(sampleMovieArray));
+  }
