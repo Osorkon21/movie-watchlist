@@ -61,7 +61,7 @@
 
 # Stuff We Need
 
-## Nav bar
+## Nav ba
 
 * Site name (top left?)
 
