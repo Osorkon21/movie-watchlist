@@ -1,15 +1,3 @@
-// You shall use the TMDB logo to identify your use of the TMDB APIs. You shall place the following notice prominently on your application: "This product uses the TMDB API but is not endorsed or certified by TMDB."
-
-// Any use of the TMDB logo in your application shall be less prominent than the logo or mark that primarily describes the application and your use of the TMDB logo shall not imply any endorsement by TMDB.When attributing TMDB, the attribution must be within your application's "About" or "Credits" type section.
-
-// When using a TMDB logo, we require you to use one of our approved logos.
-
-// approved logo link: https://www.themoviedb.org/about/logos-attribution
-
-// When linking back to our website, please point your link to:
-
-// https://www.themoviedb.org
-
 const body = $("body");
 const movieNameInput = $("#movie-name-input");
 const cardContainer = $(".card-container");
