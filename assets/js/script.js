@@ -165,8 +165,10 @@ function getFromLocalStorage() {
 }
 
 
+
 function saveToLocalStorage(movieArray) {
   // Below: put a lot of info and put into a string (stringify).
   localStorage.setItem("array", JSON.stringify(movieArray));
+  console.log(movieArray);
 
 }
