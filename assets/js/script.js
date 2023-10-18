@@ -1,33 +1,3 @@
-// // Title of movie, year, and priority. Get the watchlist object from MJ. 1. By the end of the day: HTML/CSS for the main page where we see the trending + search results. 2. Functions for getting data into and out of local storage. 
-
-// // step 1: can we save this array in local storage
-// // step 2: can we pull it back out and have it in its native data format 
-
-// // localStorage.setItem("title", JSON.stringify(sampleMovieArray));
-
-
-// function getFromLocalStorage(){
-// var array = localStorage.getItem("array");
-
-// if (array) {
-//     array=JSON.parse(movieArray);
-// }
-
-// else {
-//     array=[];
-// }
-// return array; 
-// }
-
-
-// function saveToLocalStorage(movieArray){ 
-//   // Below: put a lot of info and put into a string (stringify).
-//   localStorage.setItem("array", JSON.stringify(movieArray));
-//   // movieArray = JSON.stringify(array);
-//   // localStorage.setItem("key", string);
-
-//   }
-
 const body = $("body");
 const movieNameInput = $("#movie-name-input");
 const carouselContainer = $(".carousel-container");
@@ -71,16 +41,40 @@ function onWatchlistBtnClick() {
   var movieName;
 
   if (imgID == 20) {
-    saveToLocalStorage(currentMovieData);
     movieName = currentMovieData.original_title;
+
+    if (!isNameAlreadyPresent(movieName)) {
+      saveToLocalStorage(currentMovieData);
+    }
+    else
+      return;
   }
   else {
-    saveToLocalStorage(trendingList[imgID]);
     movieName = trendingList[imgID].original_title;
+
+    if (!isNameAlreadyPresent(movieName)) {
+      saveToLocalStorage(trendingList[imgID]);
+    }
+    else
+      return;
   }
 
   // pop up "you have added this movie to watchlist" up top
   popupNotification(movieName);
+}
+
+function isNameAlreadyPresent(movieName) {
+  for (var i = 0; i < movieArray.length; i++) {
+    var name = movieArray[i].original_title;
+
+    if (movieName === name) {
+      console.log("Identical name present!");
+      return true;
+    }
+  }
+
+  console.log("No name present!");
+  return false;
 }
 
 body.on("click", ".submit-btn", onMovieNameInput);
