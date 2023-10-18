@@ -1,12 +1,16 @@
 const body = $("body");
 const movieNameInput = $("#movie-name-input");
+const carouselContainer = $(".carousel-container");
 const cardContainer = $(".card-container");
 const submitBtn = $(".submit-btn");
 const searchMovieName = $(".search-movie-name");
 
 body.on("click", ".submit-btn", onMovieNameInput);
 
-// getTrendingMovies();
+// images are keyed by id to this array - whatever image is clicked on, tell where it is in this list by matching ids to array index numbers
+var trendingList;
+
+getTrendingMovies();
 
 async function getTrendingMovies() {
   const trendingMovies = `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=6c6fe5f85d17328e8be5488bcb10da64`;
@@ -15,9 +19,10 @@ async function getTrendingMovies() {
 
   console.log(trendingData);
 
-  for (var i = 0; i < trendingData.results.length; i++) {
-    addMovieCard(trendingData.results[i]);
-  }
+  populateCarousel(trendingData.results);
+
+  trendingList = trendingData.results;
+  console.log(trendingData.results);
 }
 
 function onMovieNameInput(e) {
@@ -40,6 +45,7 @@ async function getMovieInfo(movieName) {
   if (movieData.results.length !== 0) {
     movieNameInput.val("");
     movieNameInput.attr("placeholder", "movie name")
+    cardContainer.empty();
     addMovieCard(movieData.results[0]);
   }
   else {
@@ -75,4 +81,32 @@ function addMovieCard(movieData) {
         </div>
       </div>
     `));
+}
+
+function populateCarousel(movieData) {
+  carouselContainer.append($(`      
+  <div id="trending-carousel" class="carousel slide"  data-bs-ride="carousel" style="width: 30rem;">
+    <div class="carousel-inner">
+      <div class="carousel-item active w-100">
+        <img class="d-block w-100 img-0" src="${"https://image.tmdb.org/t/p/original/" + movieData[0].poster_path}" alt="No poster found!">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#trending-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#trending-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>`));
+
+  const carouselInner = $(".carousel-inner");
+
+  for (var i = 1; i < movieData.length; i++) {
+    carouselInner.append($(`
+      <div class="carousel-item w-100">
+        <img class="d-block w-100 img-${i}" src="${"https://image.tmdb.org/t/p/original/" + movieData[i].poster_path}" alt="No poster found!">
+      </div>`))
+  }
 }
