@@ -1,7 +1,9 @@
-var watchlistArray = JSON.parse(localStorage.getItem('array')) || []
+var watchlistArray = JSON.parse(localStorage.getItem('array')) || [];
 console.log(watchlistArray);
 
-var watchlistCard = $('.watchlist-container')
+var watchlistCard = $('.watchlist-container');
+
+displayWatchlist();
 
 const main = $("body");
 const removeBtn = $(".removeClass");
@@ -48,5 +50,5 @@ function removeFromList() {
 
   localStorage.setItem("array", JSON.stringify(movieArray));
 
-  $(this).parent().parent().remove()
+  $(this).parent().parent().remove();
 }
