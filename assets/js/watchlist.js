@@ -1,9 +1,9 @@
-displayWatchlist()
-
-var watchlistArray = JSON.parse(localStorage.getItem('array')) || []
+var watchlistArray = JSON.parse(localStorage.getItem('array')) || [];
 console.log(watchlistArray);
 
-var watchlistCard = $('.watchlist-container')
+var watchlistCard = $('.watchlist-container');
+
+displayWatchlist();
 
 const main = $("body");
 const removeBtn = $(".removeClass");
@@ -14,7 +14,7 @@ function displayWatchlist() {
   for (var i = 0; i < watchlistArray.length; i++) {
     var movieData = watchlistArray[i]
     watchlistCard.append($(`
-      <div class="card d-flex" style = "width: 30rem;" >
+      <div class="card d-flex" style = "width: 20rem;" >
             <img class="card-img-top" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
             <div class="card-body">
               <ul>
@@ -48,5 +48,5 @@ function removeFromList() {
 
   localStorage.setItem("array", JSON.stringify(movieArray));
 
-  $(this).parent().parent().remove()
+  $(this).parent().parent().remove();
 }

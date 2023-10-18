@@ -185,5 +185,4 @@ function populateCarousel(movieData) {
 function saveToLocalStorage(movieData) {
   movieArray.push(movieData);
   localStorage.setItem("array", JSON.stringify(movieArray));
-
 }
