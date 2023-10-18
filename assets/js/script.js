@@ -139,7 +139,7 @@ function addMovieCard(movieData) {
   searchMovieName.text(movieData.original_title);
 
   cardContainer.append($(`
-      <div class="card d-flex" style="width: 30rem;">
+      <div class="card d-flex" style="width: 15rem;">
         <img id ="20" class="card-img-top clickable-img" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
         <div class="card-body">
           <ul>

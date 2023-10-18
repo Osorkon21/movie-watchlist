@@ -7,16 +7,18 @@
 
 * Content generated will be dynamic
 
-* Add to Watchlist feature 
+* Add & remove from watchlist feature
 
 
 ## Specific Goals (MVP)
 
-* Content generated will be dynamic and displayed through a `carousel`
+* Content generated will be dynamic and displayed through a [carousel](https://www.w3schools.com/bootstrap/bootstrap_carousel.asp)
 
-* Retrieving movie data using [TDMb's Movie API](https://developer.themoviedb.org/docs) 
+* Retrieving movie data using [TDMb's Movie API](https://developer.themoviedb.org/docs).
 
-* Using `localStorage` and `JSON` methods to manipulate, store, and retrieved data.
+* Using `localStorage` and `JSON` methods to manipulate, store, and retrieved data from API.
+
+* [Day.js](https://day.js.org/) for manipulating dates and times.
 
 
 ## Example Preview
@@ -28,78 +30,15 @@
 
 * GitHub [Repository](https://github.com/Osorkon21/movie-watchlist)
 
-* GitHub Pages
+* GitHub [Pages URL](https://osorkon21.github.io/movie-watchlist/)
+
+
+## Project Team
+- Joey Thao
+- Sean Sutter
+- Peter Krause
+- Victor Montelongo
+- Meriel Caballero
 
 
 
-
-
-
-
-
-
-
-
-
-
-# Cart.js LIBRARY, NEW TECHNOLOGY
-
-* Use this for shopping cart manipulation
-
-# OMDb API 
-
-*  get movie info, read the received JSON and put some info in the generated card
-
-
-# MVP
-
-* Use Cart.js for cart manipulation?
-
-* Save selected items to storage
-
-* Update quantity to storage
-
-* Add total on checkout page
-
-
-# Stuff We Need
-
-## Nav ba
-
-* Site name (top left?)
-
-* search bar here?
-
-* Checkout symbol in nav bar (top right?)
-
-## Front page
-
-* 4-8 pre-populated movie cards (we pick what they are)
-
-* Search bar to send stuff to OMDb API, populate new pop-up card with API data
-
-### Movie Card
-
-* movie image from API, have image link to somewhere (IMDB? Wikipedia?)
-
-* Plot summary from API
-
-* Year released from API
-
-* Genre?
-
-## Checkout page
-
-* List of movies we have selected
-
-* Total cost?
-
-* "Place Order" button that will do nothing
-
-## Footer
-
-* Contact the developers (GitHub links?)
-
-* Copyright this year?
-
-* PATREON LINK

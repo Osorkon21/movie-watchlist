@@ -14,7 +14,7 @@ function displayWatchlist() {
   for (var i = 0; i < watchlistArray.length; i++) {
     var movieData = watchlistArray[i]
     watchlistCard.append($(`
-      <div class="card d-flex" style = "width: 20rem;" >
+      <div class="card d-flex border" style="width: 20rem;" >
             <img class="card-img-top" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
             <div class="card-body">
               <ul>
@@ -32,6 +32,8 @@ function displayWatchlist() {
   console.log(watchlistArray);
 
 }
+displayWatchlist()
+
 
 function removeFromList() {
   var movieName = $(this).attr("id");
