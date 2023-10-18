@@ -154,9 +154,11 @@ function getFromLocalStorage() {
 }
 
 
+
 function saveToLocalStorage(movieData) {
   movieArray.push(movieData);
   localStorage.setItem("array", JSON.stringify(movieArray));
+
 }
 
 function populateCarousel(movieData) {
