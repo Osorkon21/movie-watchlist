@@ -8,9 +8,6 @@ const removeBtn = $(".removeClass");
 
 main.on("click", ".removeClass", removeFromList);
 
-
-
-
 function displayWatchlist() {
   for (var i = 0; i < watchlistArray.length; i++) {
     var movieData = watchlistArray[i]
@@ -24,7 +21,7 @@ function displayWatchlist() {
                 <li>User Rating: ${movieData.vote_average.toFixed(1)}</li>
                 <li>Total User Reviews: ${movieData.vote_count}</li>
               </ul>
-              <a href="#" class="btn btn-danger removeClass">Remove from watchlist</a>
+              <a id="${movieData.original_title}" href="#" class="btn removeClass btn-danger">Remove from watchlist</a>
             </div>
           </div >
    `
@@ -37,6 +34,19 @@ displayWatchlist()
 
 
 function removeFromList() {
+  var movieName = $(this).attr("id");
+
+  console.log(movieName);
+
+  var movieArray = JSON.parse(localStorage.getItem("array"));
+
+  for (var i = 0; i < movieArray.length; i++) {
+
+    if (movieArray[i].original_title === movieName)
+      movieArray.splice(i, 1);
+  }
+
+  localStorage.setItem("array", JSON.stringify(movieArray));
+
   $(this).parent().parent().remove()
-  console.log('REMOVED');
 }
