@@ -7,6 +7,9 @@ const main = $("body");
 const removeBtn = $(".removeClass");
 
 main.on("click", ".removeClass", removeFromList);
+function removingStorage() {
+  localStorage.removeItem("array", removeFromList())
+}
 
 
 // const movieInfo = `https://api.themoviedb.org/3/search/movie?language=en-US&query=${convertSpaces(movieName)}&api_key=6c6fe5f85d17328e8be5488bcb10da64`
