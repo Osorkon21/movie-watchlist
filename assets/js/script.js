@@ -182,20 +182,6 @@ function populateCarousel(movieData) {
   }
 }
 
-function getFromLocalStorage() {
-  var array = localStorage.getItem("array");
-  if (array) {
-    array = JSON.parse(movieArray);
-  }
-
-  else {
-    array = [];
-  }
-  return array;
-}
-
-
-
 function saveToLocalStorage(movieData) {
   movieArray.push(movieData);
   localStorage.setItem("array", JSON.stringify(movieArray));

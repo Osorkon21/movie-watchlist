@@ -1,3 +1,5 @@
+displayWatchlist()
+
 var watchlistArray = JSON.parse(localStorage.getItem('array')) || []
 console.log(watchlistArray);
 
@@ -30,7 +32,6 @@ function displayWatchlist() {
   console.log(watchlistArray);
 
 }
-displayWatchlist()
 
 function removeFromList() {
   var movieName = $(this).attr("id");
