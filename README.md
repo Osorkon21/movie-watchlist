@@ -3,29 +3,32 @@
 
 ## Overview
 
-* Using [TDMb's Movie API](https://developer.themoviedb.org/docs) we can browse and search for specific movies.
+* Browse trending movies or search specific by title
 
-* Content generated will be dynamic 
+* Content generated will be dynamic
 
-* Adding movie to Watchlist using `localStorage` and `JSON` methods to save retrieve data.
-
+* Add to Watchlist feature 
 
 
 ## Specific Goals (MVP)
 
+* Content generated will be dynamic and displayed through a `carousel`
 
+* Retrieving movie data using [TDMb's Movie API](https://developer.themoviedb.org/docs) 
 
+* Using `localStorage` and `JSON` methods to manipulate, store, and retrieved data.
 
 
 ## Example Preview
 
-![WIP](./assets/images/7pIxbgV.png)
-
+![Preview](./assets/images/67h1zPC.png)
 
 
 ## Deployment
 
+* GitHub [Repository](https://github.com/Osorkon21/movie-watchlist)
 
+* GitHub Pages
 
 
 
@@ -61,7 +64,7 @@
 
 # Stuff We Need
 
-## Nav bar
+## Nav ba
 
 * Site name (top left?)
 

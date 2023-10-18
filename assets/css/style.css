@@ -22,3 +22,7 @@ i {
   font-family: sans-serif;
   font-size: 36px;
 } */
+
+.clickable-img {
+  cursor: pointer;
+}
