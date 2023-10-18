@@ -28,16 +28,13 @@
 
 //   }
 
-// TODO: Click on trending image to pop up something, populated with movie info
-// TODO: Get top pop-up to say "you have added this movie to watchlist", should contain movie name
-// TODO: Pop up temporary thing on top of screen after adding anything to watchlist
-
 const body = $("body");
 const movieNameInput = $("#movie-name-input");
 const carouselContainer = $(".carousel-container");
 const cardContainer = $(".card-container");
 const submitBtn = $(".submit-btn");
 const searchMovieName = $(".search-movie-name");
+const watchlistAlert = $(".watchlist-alert");
 
 // movies added to watchlist are stored here
 var movieArray = [];
@@ -47,17 +44,43 @@ var currentMovieData;
 // images are keyed by id to this array - whatever image is clicked on, tell where it is in this list by matching ids to array index numbers
 var trendingList;
 
+var secondsToDisplay = 2;
+
 body.on("click", ".clickable-img", onWatchlistBtnClick);
 body.on("click", ".watchlist-btn", onWatchlistBtnClick);
 
-function onWatchlistBtnClick() {
-  // pop up "you have added this movie to watchlist" up top
-  const imgID = $(this).attr("id");
+function popupNotification(movieName) {
+  watchlistAlert.attr("class", "text-center h5 watchlist-alert");
+  watchlistAlert.text(`${movieName} added to your watchlist!`);
 
-  if (imgID == 20)
+  var timer = setInterval(function () {
+    secondsToDisplay--;
+    console.log("secondsToDisplay is " + secondsToDisplay);
+
+    if (secondsToDisplay === 0) {
+      clearInterval(timer);
+      watchlistAlert.attr("class", "d-none text-center h5 watchlist-alert");
+      secondsToDisplay = 2;
+    }
+
+  }, 1000);
+}
+
+function onWatchlistBtnClick() {
+  const imgID = $(this).attr("id");
+  var movieName;
+
+  if (imgID == 20) {
     saveToLocalStorage(currentMovieData);
-  else
+    movieName = currentMovieData.original_title;
+  }
+  else {
     saveToLocalStorage(trendingList[imgID]);
+    movieName = trendingList[imgID].original_title;
+  }
+
+  // pop up "you have added this movie to watchlist" up top
+  popupNotification(movieName);
 }
 
 body.on("click", ".submit-btn", onMovieNameInput);
