@@ -8,18 +8,6 @@ const removeBtn = $(".removeClass");
 
 main.on("click", ".removeClass", removeFromList);
 
-
-// const movieInfo = `https://api.themoviedb.org/3/search/movie?language=en-US&query=${convertSpaces(movieName)}&api_key=6c6fe5f85d17328e8be5488bcb10da64`
-
-// psuedo code
-// checkk watchlist array . movie === movieData //movieID
-// for each, if else, ==== !===
-// then display movie/watchlist on html
-
-// remove from watchlist
-
-
-
 function displayWatchlist() {
   for (var i = 0; i < watchlistArray.length; i++) {
     var movieData = watchlistArray[i]
@@ -33,10 +21,10 @@ function displayWatchlist() {
     <li>User Rating: ${movieData.vote_average.toFixed(1)}</li>
                 <li>Total User Reviews: ${movieData.vote_count}</li>
               </ul>
-              <a href="#" class="btn removeClass btn-primary">Remove from watchlist</a>
-              </div>
-              </div >
-              `
+              <a id="${movieData.original_title}" href="#" class="btn removeClass btn-danger">Remove from watchlist</a>
+            </div>
+          </div >
+   `
     ))
   }
   console.log(watchlistArray);
@@ -45,8 +33,21 @@ function displayWatchlist() {
 displayWatchlist()
 
 function removeFromList() {
+  var movieName = $(this).attr("id");
+
+  console.log(movieName);
+
+  var movieArray = JSON.parse(localStorage.getItem("array"));
+
+  for (var i = 0; i < movieArray.length; i++) {
+
+    if (movieArray[i].original_title === movieName)
+      movieArray.splice(i, 1);
+  }
+
+  localStorage.setItem("array", JSON.stringify(movieArray));
+
   $(this).parent().parent().remove()
-  console.log('REMOVED');
 }
 
 function removingStorage() {
