@@ -28,6 +28,10 @@
 
 //   }
 
+// TODO: Click on trending image to pop up something, populated with movie info
+// TODO: Get top pop-up to say "you have added this movie to watchlist", should contain movie name
+// TODO: Pop up temporary thing on top of screen after adding anything to watchlist
+
 const body = $("body");
 const movieNameInput = $("#movie-name-input");
 const carouselContainer = $(".carousel-container");
@@ -35,17 +39,28 @@ const cardContainer = $(".card-container");
 const submitBtn = $(".submit-btn");
 const searchMovieName = $(".search-movie-name");
 
+// movies added to watchlist are stored here
+var movieArray = [];
+
 var currentMovieData;
-
-body.on("click", ".watchlist-btn", onWatchlistBtnClick)
-
-function onWatchlistBtnClick() {
-  saveToLocalStorage(currentMovieData);
-}
-body.on("click", ".submit-btn", onMovieNameInput);
 
 // images are keyed by id to this array - whatever image is clicked on, tell where it is in this list by matching ids to array index numbers
 var trendingList;
+
+body.on("click", ".clickable-img", onWatchlistBtnClick);
+body.on("click", ".watchlist-btn", onWatchlistBtnClick);
+
+function onWatchlistBtnClick() {
+  // pop up "you have added this movie to watchlist" up top
+  const imgID = $(this).attr("id");
+
+  if (imgID == 20)
+    saveToLocalStorage(currentMovieData);
+  else
+    saveToLocalStorage(trendingList[imgID]);
+}
+
+body.on("click", ".submit-btn", onMovieNameInput);
 
 getTrendingMovies();
 
@@ -108,7 +123,7 @@ function addMovieCard(movieData) {
 
   cardContainer.append($(`
       <div class="card d-flex" style="width: 30rem;">
-        <img class="card-img-top" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
+        <img id ="20" class="card-img-top clickable-img" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
         <div class="card-body">
           <ul>
             <li>Plot: ${movieData.overview}</li>
@@ -116,7 +131,7 @@ function addMovieCard(movieData) {
             <li>User Rating: ${movieData.vote_average.toFixed(1)}</li>
             <li>Total User Reviews: ${movieData.vote_count}</li>
           </ul>
-          <a href="#" class="btn btn-primary watchlist-btn">Add to Watchlist</a>
+          <a href="#" id="20" class="btn btn-primary watchlist-btn">Add to Watchlist</a>
         </div>
       </div>
     `));
@@ -127,7 +142,7 @@ function populateCarousel(movieData) {
   <div id="trending-carousel" class="carousel slide"  data-bs-ride="carousel" style="width: 30rem;">
     <div class="carousel-inner">
       <div class="carousel-item active w-100">
-        <img class="d-block w-100 img-0" src="${"https://image.tmdb.org/t/p/original/" + movieData[0].poster_path}" alt="No poster found!">
+        <img id ="0" class="d-block w-100 clickable-img" src="${"https://image.tmdb.org/t/p/original/" + movieData[0].poster_path}" alt="No poster found!">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#trending-carousel" data-bs-slide="prev">
@@ -145,12 +160,10 @@ function populateCarousel(movieData) {
   for (var i = 1; i < movieData.length; i++) {
     carouselInner.append($(`
       <div class="carousel-item w-100">
-        <img class="d-block w-100 img-${i}" src="${"https://image.tmdb.org/t/p/original/" + movieData[i].poster_path}" alt="No poster found!">
+        <img id ="${i}" class="d-block w-100 clickable-img" src="${"https://image.tmdb.org/t/p/original/" + movieData[i].poster_path}" alt="No poster found!">
       </div>`))
   }
 }
-
-var movieArray = [];
 
 function getFromLocalStorage() {
   var array = localStorage.getItem("array");
@@ -166,9 +179,8 @@ function getFromLocalStorage() {
 
 
 
-function saveToLocalStorage(movieArray) {
-  // Below: put a lot of info and put into a string (stringify).
+function saveToLocalStorage(movieData) {
+  movieArray.push(movieData);
   localStorage.setItem("array", JSON.stringify(movieArray));
-  console.log(movieArray);
 
 }
