@@ -14,15 +14,6 @@ a {
   color: white;
 }
 
-i {
-  cursor: pointer;
-}
-
-/* h2 {
-  font-family: sans-serif;
-  font-size: 36px;
-} */
-
 .clickable-img {
   cursor: pointer;
 }
@@ -32,8 +23,6 @@ i {
   .card {
     width: 50%;
   }
-
-
 }
 
 /* Cards are stacked on top of each other at 768px or smaller */
@@ -41,6 +30,4 @@ i {
   .card {
     width: 100%;
   }
-
-
 }
