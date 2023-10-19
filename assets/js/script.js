@@ -4,6 +4,35 @@ const carouselContainer = $(".carousel-container");
 const cardContainer = $(".card-container");
 const submitBtn = $(".submit-btn");
 const searchMovieName = $(".search-movie-name");
+const watchlistAlert = $(".watchlist-alert");
+
+// movies added to watchlist are stored here
+var movieArray = JSON.parse(localStorage.getItem('array')) || [];
+
+var currentMovieData;
+
+// images are keyed by id to this array - whatever image is clicked on, tell where it is in this list by matching ids to array index numbers
+var trendingList;
+
+var secondsToDisplay = 2;
+
+body.on("click", ".clickable-img", onWatchlistBtnClick);
+body.on("click", ".watchlist-btn", onWatchlistBtnClick);
+
+function popupNotification(movieName) {
+  watchlistAlert.attr("class", "text-center h5 watchlist-alert");
+  watchlistAlert.text(`${movieName} added to your watchlist!`);
+
+  var timer = setInterval(function () {
+    secondsToDisplay--;
+
+    if (secondsToDisplay === 0) {
+      clearInterval(timer);
+      watchlistAlert.attr("class", "d-none text-center h5 watchlist-alert");
+      secondsToDisplay = 2;
+    }
+  }, 1000);
+}
 
 function onWatchlistBtnClick() {
   const imgID = $(this).attr("id");
@@ -36,13 +65,10 @@ function isNameAlreadyPresent(movieName) {
   for (var i = 0; i < movieArray.length; i++) {
     var name = movieArray[i].original_title;
 
-    if (movieName === name) {
-      console.log("Identical name present!");
+    if (movieName === name)
       return true;
-    }
   }
 
-  console.log("No name present!");
   return false;
 }
 
@@ -55,11 +81,10 @@ async function getTrendingMovies() {
   const trendingResponse = await fetch(trendingMovies);
   const trendingData = await trendingResponse.json();
 
-  console.log(trendingData);
+  populateCarousel(trendingData.results);
 
-  for (var i = 0; i < trendingData.results.length; i++) {
-    addMovieCard(trendingData.results[i]);
-  }
+  trendingList = trendingData.results;
+  console.log(trendingData.results);
 }
 
 function onMovieNameInput(e) {
@@ -72,12 +97,7 @@ async function getMovieInfo(movieName) {
   const movieInfo = `https://api.themoviedb.org/3/search/movie?language=en-US&query=${convertSpaces(movieName)}&api_key=6c6fe5f85d17328e8be5488bcb10da64`;
 
   const movieResponse = await fetch(movieInfo);
-
-  console.log(movieResponse);
-
   const movieData = await movieResponse.json();
-
-  console.log(movieData);
 
   if (movieData.results.length !== 0) {
     movieNameInput.val("");
@@ -101,12 +121,10 @@ function convertSpaces(movieName) {
 }
 
 function addMovieCard(movieData) {
-  console.log(movieData);
-
   searchMovieName.text(movieData.original_title);
 
   cardContainer.append($(`
-      <div class="card d-flex" style="width: 15rem;">
+      <div class="card d-flex" style="width: 30rem;">
         <img id ="20" class="card-img-top clickable-img" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
         <div class="card-body">
           <ul>
