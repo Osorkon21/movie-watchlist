@@ -1,7 +1,9 @@
-var watchlistArray = JSON.parse(localStorage.getItem('array')) || []
+var watchlistArray = JSON.parse(localStorage.getItem('array')) || [];
 console.log(watchlistArray);
 
-var watchlistCard = $('.watchlist-container')
+var watchlistCard = $('.watchlist-container');
+
+displayWatchlist();
 
 const main = $("body");
 const removeBtn = $(".removeClass");
@@ -12,13 +14,13 @@ function displayWatchlist() {
   for (var i = 0; i < watchlistArray.length; i++) {
     var movieData = watchlistArray[i]
     watchlistCard.append($(`
-    <div class="card d-flex" style = "width: 30rem;" >
-    <img class="card-img-top" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
-    <div class="card-body">
-    <ul>
-    <li>Plot: ${movieData.overview}</li>
-    <li>Release Date: ${dayjs(movieData.release_date).format("M/D/YY")}</li>
-    <li>User Rating: ${movieData.vote_average.toFixed(1)}</li>
+      <div class="card d-flex border" style="width: 20rem;" >
+            <img class="card-img-top" src="${"https://image.tmdb.org/t/p/original/" + movieData.poster_path}" alt="No poster found!">
+            <div class="card-body">
+              <ul>
+                <li>Plot: ${movieData.overview}</li>
+                <li>Release Date: ${dayjs(movieData.release_date).format("M/D/YY")}</li>
+                <li>User Rating: ${movieData.vote_average.toFixed(1)}</li>
                 <li>Total User Reviews: ${movieData.vote_count}</li>
               </ul>
               <a id="${movieData.original_title}" href="#" class="btn removeClass btn-danger">Remove from watchlist</a>
@@ -31,6 +33,7 @@ function displayWatchlist() {
 
 }
 displayWatchlist()
+
 
 function removeFromList() {
   var movieName = $(this).attr("id");
@@ -47,7 +50,7 @@ function removeFromList() {
 
   localStorage.setItem("array", JSON.stringify(movieArray));
 
-  $(this).parent().parent().remove()
+  $(this).parent().parent().remove();
 }
 
 function removingStorage() {
